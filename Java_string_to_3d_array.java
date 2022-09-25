@@ -1,8 +1,8 @@
 import java.util.Arrays;
 
-class Java_string_to_3d_array
+class Java_string_to_4d_array_converter
 {
-
+    
     public static double[][][] string_to_3d_array_double(String input_string)
     {
         double[][][] final_outputs={};
@@ -339,66 +339,213 @@ class Java_string_to_3d_array
         return final_outputs;
     }
 
+    
+    public static double[][][][] string_to_4d_array_double(String input_string)
+    {
+        double[][][][] final_outputs={};
+        String current_3d_string="";
+        for (int i=0; i<input_string.length()-2; i++) //-2 so it doesn't count the last character at all
+        {
+            if ((input_string.charAt(i)=='}') && (input_string.charAt(i+1)=='}') && (input_string.charAt(i+2)=='}'))
+            {
+                current_3d_string+="}}";
+                final_outputs=Arrays.copyOf(final_outputs, final_outputs.length+1);
+                final_outputs[final_outputs.length-1]=string_to_3d_array_double(current_3d_string);
+                current_3d_string="";
+            }
+            else
+            {
+                if (!((input_string.charAt(i+1)==',') && (current_3d_string=="")))
+                {
+                    current_3d_string+=input_string.charAt(i+1);
+                }
+            }
+        }
+        return  final_outputs;
+    }
+
+    public static int[][][][] string_to_4d_array_integer(String input_string)
+    {
+        int[][][][] final_outputs={};
+        String current_3d_string="";
+        for (int i=0; i<input_string.length()-2; i++) //-2 so it doesn't count the last character at all
+        {
+            if ((input_string.charAt(i)=='}') && (input_string.charAt(i+1)=='}') && (input_string.charAt(i+2)=='}'))
+            {
+                current_3d_string+="}}";
+                final_outputs=Arrays.copyOf(final_outputs, final_outputs.length+1);
+                final_outputs[final_outputs.length-1]=string_to_3d_array_integer(current_3d_string);
+                current_3d_string="";
+            }
+            else
+            {
+                if (!((input_string.charAt(i+1)==',') && (current_3d_string=="")))
+                {
+                    current_3d_string+=input_string.charAt(i+1);
+                }
+            }
+        }
+        return  final_outputs;
+    }
+
+    public static boolean[][][][] string_to_4d_array_boolean(String input_string)
+    {
+        boolean[][][][] final_outputs={};
+        String current_3d_string="";
+        for (int i=0; i<input_string.length()-2; i++) //-2 so it doesn't count the last character at all
+        {
+            if ((input_string.charAt(i)=='}') && (input_string.charAt(i+1)=='}') && (input_string.charAt(i+2)=='}'))
+            {
+                current_3d_string+="}}";
+                final_outputs=Arrays.copyOf(final_outputs, final_outputs.length+1);
+                final_outputs[final_outputs.length-1]=string_to_3d_array_boolean(current_3d_string);
+                current_3d_string="";
+            }
+            else
+            {
+                if (!((input_string.charAt(i+1)==',') && (current_3d_string=="")))
+                {
+                    current_3d_string+=input_string.charAt(i+1);
+                }
+            }
+        }
+        return  final_outputs;
+    }
+
+    public static String[][][][] string_to_4d_array_string(String input_string)
+    {
+        String[][][][] final_outputs={};
+        String current_3d_string="";
+        for (int i=0; i<input_string.length()-2; i++) //-2 so it doesn't count the last character at all
+        {
+            if ((input_string.charAt(i)=='}') && (input_string.charAt(i+1)=='}') && (input_string.charAt(i+2)=='}'))
+            {
+                current_3d_string+="}}";
+                final_outputs=Arrays.copyOf(final_outputs, final_outputs.length+1);
+                final_outputs[final_outputs.length-1]=string_to_3d_array_string(current_3d_string);
+                current_3d_string="";
+            }
+            else
+            {
+                if (!((input_string.charAt(i+1)==',') && (current_3d_string=="")))
+                {
+                    current_3d_string+=input_string.charAt(i+1);
+                }
+            }
+        }
+        return  final_outputs;
+    }
+
+
     public static void main(String[] args)
     {
-        String input_string_double="{{{1.1,2.2},{3.3,4.4},{5.5,6.6}},{{7.7,8.8},{9.9,10.01},{11.11,12.12}}}";
-        double[][][] double_outputs=string_to_3d_array_double(input_string_double);
-        System.out.println(double_outputs[0][0][0]);
-        System.out.println(double_outputs[0][0][1]);
-        System.out.println(double_outputs[0][1][0]);
-        System.out.println(double_outputs[0][1][1]);
-        System.out.println(double_outputs[0][2][0]);
-        System.out.println(double_outputs[0][2][1]);
-        System.out.println(double_outputs[1][0][0]);
-        System.out.println(double_outputs[1][0][1]);
-        System.out.println(double_outputs[1][1][0]);
-        System.out.println(double_outputs[1][1][1]);
-        System.out.println(double_outputs[1][2][0]);
-        System.out.println(double_outputs[1][2][1]);
-        String input_string_integer="{{{1.78,2},{3,4},{5,6}},{{7,8},{9,10},{11,12}}}";
-        int[][][] integer_outputs=string_to_3d_array_integer(input_string_integer);
-        System.out.println(integer_outputs[0][0][0]);
-        System.out.println(integer_outputs[0][0][1]);
-        System.out.println(integer_outputs[0][1][0]);
-        System.out.println(integer_outputs[0][1][1]);
-        System.out.println(integer_outputs[0][2][0]);
-        System.out.println(integer_outputs[0][2][1]);
-        System.out.println(integer_outputs[1][0][0]);
-        System.out.println(integer_outputs[1][0][1]);
-        System.out.println(integer_outputs[1][1][0]);
-        System.out.println(integer_outputs[1][1][1]);
-        System.out.println(integer_outputs[1][2][0]);
-        System.out.println(integer_outputs[1][2][1]);
-        String input_string_boolean="{{{true,false},{false,true},{true,true}},{{false,false},{true,false},{false,false}}}";
-        boolean[][][] boolean_outputs=string_to_3d_array_boolean(input_string_boolean);
-        System.out.println(boolean_outputs[0][0][0]);
-        System.out.println(boolean_outputs[0][0][1]);
-        System.out.println(boolean_outputs[0][1][0]);
-        System.out.println(boolean_outputs[0][1][1]);
-        System.out.println(boolean_outputs[0][2][0]);
-        System.out.println(boolean_outputs[0][2][1]);
-        System.out.println(boolean_outputs[1][0][0]);
-        System.out.println(boolean_outputs[1][0][1]);
-        System.out.println(boolean_outputs[1][1][0]);
-        System.out.println(boolean_outputs[1][1][1]);
-        System.out.println(boolean_outputs[1][2][0]);
-        System.out.println(boolean_outputs[1][2][1]);
-        String input_string_string="{{{a,b},{C,D},{EF,Gh}},{{Ij,k_9},{12,1asdf},{hi,bye}}}";
-        String[][][] string_outputs=string_to_3d_array_string(input_string_string);
-        System.out.println(string_outputs[0][0][0]);
-        System.out.println(string_outputs[0][0][1]);
-        System.out.println(string_outputs[0][1][0]);
-        System.out.println(string_outputs[0][1][1]);
-        System.out.println(string_outputs[0][2][0]);
-        System.out.println(string_outputs[0][2][1]);
-        System.out.println(string_outputs[1][0][0]);
-        System.out.println(string_outputs[1][0][1]);
-        System.out.println(string_outputs[1][1][0]);
-        System.out.println(string_outputs[1][1][1]);
-        System.out.println(string_outputs[1][2][0]);
-        System.out.println(string_outputs[1][2][1]);
+        String input_string_double="{{{{1.1,2.2},{3.3,4.4},{5.5,6.6}},{{7.7,8.8},{9.9,10.01},{11.11,12.12}}},{{{1.1123,2.2},{3.3123,4.4},{5.5123,6.6}},{{7.7123,8.8},{9.9123,10.01},{11.11123,12.12}}}}";
+        double[][][][] double_outputs=string_to_4d_array_double(input_string_double);
+        System.out.println(double_outputs[0][0][0][0]);
+        System.out.println(double_outputs[0][0][0][1]);
+        System.out.println(double_outputs[0][0][1][0]);
+        System.out.println(double_outputs[0][0][1][1]);
+        System.out.println(double_outputs[0][0][2][0]);
+        System.out.println(double_outputs[0][0][2][1]);
+        System.out.println(double_outputs[0][1][0][0]);
+        System.out.println(double_outputs[0][1][0][1]);
+        System.out.println(double_outputs[0][1][1][0]);
+        System.out.println(double_outputs[0][1][1][1]);
+        System.out.println(double_outputs[0][1][2][0]);
+        System.out.println(double_outputs[0][1][2][1]);
+
+        System.out.println(double_outputs[1][0][0][0]);
+        System.out.println(double_outputs[1][0][0][1]);
+        System.out.println(double_outputs[1][0][1][0]);
+        System.out.println(double_outputs[1][0][1][1]);
+        System.out.println(double_outputs[1][0][2][0]);
+        System.out.println(double_outputs[1][0][2][1]);
+        System.out.println(double_outputs[1][1][0][0]);
+        System.out.println(double_outputs[1][1][0][1]);
+        System.out.println(double_outputs[1][1][1][0]);
+        System.out.println(double_outputs[1][1][1][1]);
+        System.out.println(double_outputs[1][1][2][0]);
+        System.out.println(double_outputs[1][1][2][1]);
+        String input_string_integer="{{{{1.78,2},{3,4},{5,6}},{{7,8},{9,10},{11,12}}}, {{{1.78,5},{3,9},{5,6}},{{7,8},{9,110},{11,12}}}}";
+        int[][][][] integer_outputs=string_to_4d_array_integer(input_string_integer);
+        System.out.println(integer_outputs[0][0][0][0]);
+        System.out.println(integer_outputs[0][0][0][1]);
+        System.out.println(integer_outputs[0][0][1][0]);
+        System.out.println(integer_outputs[0][0][1][1]);
+        System.out.println(integer_outputs[0][0][2][0]);
+        System.out.println(integer_outputs[0][0][2][1]);
+        System.out.println(integer_outputs[0][1][0][0]);
+        System.out.println(integer_outputs[0][1][0][1]);
+        System.out.println(integer_outputs[0][1][1][0]);
+        System.out.println(integer_outputs[0][1][1][1]);
+        System.out.println(integer_outputs[0][1][2][0]);
+        System.out.println(integer_outputs[0][1][2][1]);
+
+        System.out.println(integer_outputs[1][0][0][0]);
+        System.out.println(integer_outputs[1][0][0][1]);
+        System.out.println(integer_outputs[1][0][1][0]);
+        System.out.println(integer_outputs[1][0][1][1]);
+        System.out.println(integer_outputs[1][0][2][0]);
+        System.out.println(integer_outputs[1][0][2][1]);
+        System.out.println(integer_outputs[1][1][0][0]);
+        System.out.println(integer_outputs[1][1][0][1]);
+        System.out.println(integer_outputs[1][1][1][0]);
+        System.out.println(integer_outputs[1][1][1][1]);
+        System.out.println(integer_outputs[1][1][2][0]);
+        System.out.println(integer_outputs[1][1][2][1]);
+        String input_string_boolean="{{{{true,false},{false,true},{true,true}}, {{false,false},{true,false},{false,false}}}, {{{true,false},{false,true},{false,true}},{{true,false},{true,false},{true,false}}}}";
+        boolean[][][][] boolean_outputs=string_to_4d_array_boolean(input_string_boolean);
+        System.out.println(boolean_outputs[0][0][0][0]);
+        System.out.println(boolean_outputs[0][0][0][1]);
+        System.out.println(boolean_outputs[0][0][1][0]);
+        System.out.println(boolean_outputs[0][0][1][1]);
+        System.out.println(boolean_outputs[0][0][2][0]);
+        System.out.println(boolean_outputs[0][0][2][1]);
+        System.out.println(boolean_outputs[0][1][0][0]);
+        System.out.println(boolean_outputs[0][1][0][1]);
+        System.out.println(boolean_outputs[0][1][1][0]);
+        System.out.println(boolean_outputs[0][1][1][1]);
+        System.out.println(boolean_outputs[0][1][2][0]);
+        System.out.println(boolean_outputs[0][1][2][1]);
+
+        System.out.println(boolean_outputs[1][0][0][0]);
+        System.out.println(boolean_outputs[1][0][0][1]);
+        System.out.println(boolean_outputs[1][0][1][0]);
+        System.out.println(boolean_outputs[1][0][1][1]);
+        System.out.println(boolean_outputs[1][0][2][0]);
+        System.out.println(boolean_outputs[1][0][2][1]);
+        System.out.println(boolean_outputs[1][1][0][0]);
+        System.out.println(boolean_outputs[1][1][0][1]);
+        System.out.println(boolean_outputs[1][1][1][0]);
+        System.out.println(boolean_outputs[1][1][1][1]);
+        System.out.println(boolean_outputs[1][1][2][0]);
+        System.out.println(boolean_outputs[1][1][2][1]);
+        String input_string_string="{{{{a,b},{C,D},{EF,Gh}},{{Ij,k_9},{12,1asdf},{hi,bye}}}, {{{a,9},{C,D} ,{EF, Gh}},{{Ij,k_97},{12,1asdf},{hi,bye/cya}}}}";
+        String[][][][] string_outputs=string_to_4d_array_string(input_string_string);
+        System.out.println(string_outputs[0][0][0][0]);
+        System.out.println(string_outputs[0][0][0][1]);
+        System.out.println(string_outputs[0][0][1][0]);
+        System.out.println(string_outputs[0][0][1][1]);
+        System.out.println(string_outputs[0][0][2][0]);
+        System.out.println(string_outputs[0][0][2][1]);
+        System.out.println(string_outputs[0][1][0][0]);
+        System.out.println(string_outputs[0][1][0][1]);
+        System.out.println(string_outputs[0][1][1][0]);
+        System.out.println(string_outputs[0][1][1][1]);
+        System.out.println(string_outputs[0][1][2][0]);
+        System.out.println(string_outputs[0][1][2][1]);
+
+        System.out.println(string_outputs[1][0][0][0]);
+        System.out.println(string_outputs[1][0][0][1]);
+        System.out.println(string_outputs[1][0][1][0]);
+        System.out.println(string_outputs[1][0][1][1]);
+        System.out.println(string_outputs[1][0][2][0]);
+        System.out.println(string_outputs[1][0][2][1]);
+        System.out.println(string_outputs[1][1][0][0]);
+        System.out.println(string_outputs[1][1][0][1]);
+        System.out.println(string_outputs[1][1][1][0]);
+        System.out.println(string_outputs[1][1][1][1]);
+        System.out.println(string_outputs[1][1][2][0]);
+        System.out.println(string_outputs[1][1][2][1]);
     }
 }
-
-
-//go to https://github.com/Algorithmic-TITAN/Java_string_to_3d_array_converter to save your work!
